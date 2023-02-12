@@ -1,0 +1,64 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "java"
+    id "eclipse"
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'org.apache.commons:commons-text:1.10.0'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'it.unimi.dsi:fastutil-core:8.5.9'
+    implementation 'commons-codec:commons-codec:1.15'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+    implementation 'com.github.FireMasterK.NewPipeExtractor:NewPipeExtractor:895a175ee4126c04f52f888cb20f9c97b6afab34'
+    implementation 'com.github.FireMasterK:nanojson:5df3e81e87b791d01f132f376e4b7d4a1780f346'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.4'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.4'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4.2'
+    implementation 'com.github.ben-manes.caffeine:caffeine:3.1.1'
+    implementation 'com.rometools:rome:1.18.0'
+    implementation 'com.github.ipfs:java-ipfs-http-client:v1.3.3'
+    implementation 'org.jsoup:jsoup:1.15.3'
+    implementation 'io.activej:activej-common:5.4.3'
+    implementation 'io.activej:activej-http:5.4.3'
+    implementation 'io.activej:activej-boot:5.4.3'
+    implementation 'io.activej:activej-specializer:5.4.3'
+    implementation 'io.activej:activej-launchers-http:5.4.3'
+    implementation 'org.hsqldb:hsqldb:2.7.1'
+    implementation 'org.postgresql:postgresql:42.5.0'
+    implementation 'org.hibernate:hibernate-core:6.1.0.Final'
+    implementation 'org.hibernate:hibernate-hikaricp:6.1.0.Final'
+    implementation 'com.zaxxer:HikariCP:5.0.1'
+    implementation 'org.springframework.security:spring-security-crypto:5.7.5'
+    implementation 'commons-logging:commons-logging:1.2'
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
+    implementation 'com.squareup.okhttp3:okhttp'
+    implementation 'com.squareup.okhttp3:okhttp-brotli'
+    implementation 'io.sentry:sentry:6.6.0'
+}
+
+shadowJar {
+    // minimize()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'me.kavin.piped.Main'
+        )
+    }
+}
+
+group = 'me.kavin.piped'
+version = '1.0'
+
+compileJava.options.fork = true
+compileJava.options.forkOptions.executable = '/usr/lib/jvm/openjdk-bin-17/bin/javac'
+sourceCompatibility = 17
+targetCompatibility = 17

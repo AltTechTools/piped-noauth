@@ -58,6 +58,12 @@ public class URLUtils {
         String query = url.getQuery();
 
         boolean hasQuery = query != null;
+	if (hasQuery && (query.contains("&ip="))){
+		String querya = StringUtils.substringBefore(query,"&ip=") + "&ip=";
+		String queryb = StringUtils.substringAfter(query,"&ip=");
+		queryb = "&" + StringUtils.substringAfter(queryb,"&");
+		query = querya + "255.255.255.255" + queryb;
+	}
 
         String path = url.getPath();
 
